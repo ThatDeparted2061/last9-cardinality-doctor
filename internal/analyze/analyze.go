@@ -126,10 +126,31 @@ func Analyze(src Source, o Options) ([]Metric, error) {
 		if err != nil {
 			return nil, err
 		}
-		out = append(out, m)
+		out = append(out, m.detach())
 	}
 	sort.Slice(out, func(i, j int) bool { return out[i].Series > out[j].Series })
 	return out, nil
+}
+
+// detach copies every string out of the source. A TSDB source hands out
+// strings backed by its mmapped index, which vanish when the block closes.
+func (m Metric) detach() Metric {
+	m.Name = strings.Clone(m.Name)
+	m.Offenders = cloneAll(m.Offenders)
+	m.Labels = slices.Clone(m.Labels)
+	for i := range m.Labels {
+		l := &m.Labels[i]
+		l.Name, l.SameAs, l.Examples = strings.Clone(l.Name), strings.Clone(l.SameAs), cloneAll(l.Examples)
+	}
+	return m
+}
+
+func cloneAll(ss []string) []string {
+	out := make([]string, len(ss))
+	for i, s := range ss {
+		out[i] = strings.Clone(s)
+	}
+	return out
 }
 
 func analyzeMetric(src Source, name string, o Options) (Metric, error) {

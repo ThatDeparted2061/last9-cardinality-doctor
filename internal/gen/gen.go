@@ -33,7 +33,7 @@ type Config struct {
 	Scale float64
 	Start time.Time // start of the "earlier" window
 	Seed  uint64
-	Log   func(format string, a ...any)
+	Log   func(format string, a ...any) // optional
 }
 
 const (
@@ -63,6 +63,9 @@ type series struct {
 
 // Generate writes the dataset and returns how many distinct series it wrote.
 func Generate(ctx context.Context, c Config) (int, error) {
+	if c.Log == nil {
+		c.Log = func(string, ...any) {}
+	}
 	if err := os.MkdirAll(c.Dir, 0o755); err != nil {
 		return 0, err
 	}
