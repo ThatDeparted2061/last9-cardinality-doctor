@@ -1,0 +1,11 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: { go-version-file: go.mod }
+      - run: go vet ./... && go test ./...
+      - run: SCALE=0.1 DATA=/tmp/cd bench/run.sh   # ~640k series end to end
