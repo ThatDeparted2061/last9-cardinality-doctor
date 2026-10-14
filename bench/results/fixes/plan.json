@@ -1,0 +1,51 @@
+{
+  "metrics": [
+    {
+      "metric": "http_requests_total",
+      "drop": [
+        "user_id"
+      ],
+      "aggregation": "sum",
+      "series_before": 2000000,
+      "series_after_estimate": 4000
+    },
+    {
+      "metric": "http_request_duration_seconds_bucket",
+      "normalize": [
+        "route_path"
+      ],
+      "aggregation": "sum",
+      "series_before": 1440000,
+      "series_after_estimate": 240
+    },
+    {
+      "metric": "session_events_total",
+      "drop": [
+        "session_id"
+      ],
+      "aggregation": "sum",
+      "series_before": 1000000,
+      "series_after_estimate": 25
+    },
+    {
+      "metric": "batch_job_last_success_timestamp_seconds",
+      "drop": [
+        "run_id"
+      ],
+      "aggregation": "max",
+      "series_before": 300000,
+      "series_after_estimate": 200
+    },
+    {
+      "metric": "container_cpu_usage_seconds_total",
+      "drop_redundant": [
+        "pod_ip"
+      ],
+      "aggregation": "sum",
+      "series_before": 30000,
+      "series_after_estimate": 30000
+    }
+  ],
+  "series_before": 4904400,
+  "series_after_estimate": 168865
+}

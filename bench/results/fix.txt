@@ -1,0 +1,7 @@
+http_requests_total                        drop [user_id] normalise [] drop-redundant [] keep [] (sum)
+http_request_duration_seconds_bucket       drop [] normalise [route_path] drop-redundant [] keep [] (sum)
+session_events_total                       drop [session_id] normalise [] drop-redundant [] keep [] (sum)
+batch_job_last_success_timestamp_seconds   drop [run_id] normalise [] drop-redundant [] keep [] (max)
+container_cpu_usage_seconds_total          drop [] normalise [] drop-redundant [pod_ip] keep [] (sum)
+
+wrote bench/results/fixes/{plan.json,otel-collector.yaml,prometheus-relabel.yaml}

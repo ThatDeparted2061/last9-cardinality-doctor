@@ -1,0 +1,301 @@
+[
+  {
+    "name": "http_requests_total",
+    "series": 2000000,
+    "series_before_split": 1099713,
+    "series_after_split": 1100402,
+    "new_series_after_split": 900287,
+    "growth": 0.8186563221495062,
+    "labels": [
+      {
+        "name": "user_id",
+        "distinct_values": 900000,
+        "class": "user_id",
+        "examples": [
+          "u-100946",
+          "u-103333",
+          "u-103712"
+        ],
+        "series_without": 4000
+      },
+      {
+        "name": "service",
+        "distinct_values": 20,
+        "examples": [
+          "auth",
+          "billing",
+          "cart"
+        ]
+      },
+      {
+        "name": "route",
+        "distinct_values": 10,
+        "examples": [
+          "/api/cart",
+          "/api/items",
+          "/api/login"
+        ]
+      },
+      {
+        "name": "status",
+        "distinct_values": 5,
+        "examples": [
+          "200",
+          "201",
+          "400"
+        ]
+      },
+      {
+        "name": "method",
+        "distinct_values": 4,
+        "examples": [
+          "DELETE",
+          "GET",
+          "POST"
+        ]
+      }
+    ],
+    "offenders": [
+      "user_id"
+    ]
+  },
+  {
+    "name": "http_request_duration_seconds_bucket",
+    "series": 1440000,
+    "series_before_split": 792251,
+    "series_after_split": 791423,
+    "new_series_after_split": 647749,
+    "growth": 0.8176057840255172,
+    "labels": [
+      {
+        "name": "route_path",
+        "distinct_values": 115966,
+        "class": "url_with_ids",
+        "examples": [
+          "/api/orders/10000/items/32",
+          "/api/orders/10000/items/6",
+          "/api/orders/10000/items/9"
+        ],
+        "series_without": 240
+      },
+      {
+        "name": "service",
+        "distinct_values": 20,
+        "examples": [
+          "recommendations",
+          "pricing",
+          "catalog"
+        ]
+      },
+      {
+        "name": "le",
+        "distinct_values": 12,
+        "examples": [
+          "+Inf",
+          "0.005",
+          "0.01"
+        ]
+      }
+    ],
+    "offenders": [
+      "route_path"
+    ]
+  },
+  {
+    "name": "session_events_total",
+    "series": 1000000,
+    "series_before_split": 549681,
+    "series_after_split": 550330,
+    "new_series_after_split": 450319,
+    "growth": 0.8192369756276823,
+    "labels": [
+      {
+        "name": "session_id",
+        "distinct_values": 1000000,
+        "class": "uuid",
+        "examples": [
+          "000145ac-bfb6-42d1-9284-47c70ce65e35",
+          "0001bb91-cb0a-4100-9698-5f401a37b33f",
+          "0001cea9-69c4-47a7-bd98-a04ca16ae86f"
+        ],
+        "series_without": 25
+      },
+      {
+        "name": "event",
+        "distinct_values": 5,
+        "examples": [
+          "add_to_cart",
+          "click",
+          "purchase"
+        ]
+      },
+      {
+        "name": "tenant",
+        "distinct_values": 5,
+        "examples": [
+          "tenant-2",
+          "tenant-1",
+          "tenant-0"
+        ]
+      }
+    ],
+    "offenders": [
+      "session_id"
+    ]
+  },
+  {
+    "name": "batch_job_last_success_timestamp_seconds",
+    "series": 300000,
+    "series_before_split": 164843,
+    "series_after_split": 165300,
+    "new_series_after_split": 135157,
+    "growth": 0.8199134934452782,
+    "labels": [
+      {
+        "name": "run_id",
+        "distinct_values": 1500,
+        "class": "timestamp",
+        "examples": [
+          "1791924720",
+          "1791924780",
+          "1791924840"
+        ],
+        "series_without": 200
+      },
+      {
+        "name": "job",
+        "distinct_values": 200,
+        "examples": [
+          "etl-000",
+          "etl-001",
+          "etl-002"
+        ]
+      }
+    ],
+    "offenders": [
+      "run_id"
+    ]
+  },
+  {
+    "name": "kafka_consumergroup_lag",
+    "series": 102400,
+    "series_before_split": 102400,
+    "series_after_split": 102400,
+    "new_series_after_split": 0,
+    "growth": 0,
+    "labels": [
+      {
+        "name": "topic",
+        "distinct_values": 100,
+        "examples": [
+          "topic-00",
+          "topic-01",
+          "topic-02"
+        ]
+      },
+      {
+        "name": "partition",
+        "distinct_values": 64,
+        "examples": [
+          "0",
+          "1",
+          "10"
+        ]
+      },
+      {
+        "name": "group",
+        "distinct_values": 16,
+        "examples": [
+          "cg-00",
+          "cg-01",
+          "cg-02"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "node_cpu_seconds_total",
+    "series": 32000,
+    "series_before_split": 32000,
+    "series_after_split": 32000,
+    "new_series_after_split": 0,
+    "growth": 0,
+    "labels": [
+      {
+        "name": "instance",
+        "distinct_values": 500,
+        "examples": [
+          "node-000:9100",
+          "node-001:9100",
+          "node-002:9100"
+        ]
+      },
+      {
+        "name": "cpu",
+        "distinct_values": 8,
+        "examples": [
+          "0",
+          "1",
+          "2"
+        ]
+      },
+      {
+        "name": "mode",
+        "distinct_values": 8,
+        "examples": [
+          "idle",
+          "iowait",
+          "irq"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "container_cpu_usage_seconds_total",
+    "series": 30000,
+    "series_before_split": 30000,
+    "series_after_split": 30000,
+    "new_series_after_split": 0,
+    "growth": 0,
+    "labels": [
+      {
+        "name": "pod",
+        "distinct_values": 10000,
+        "examples": [
+          "pod-00-000",
+          "pod-00-001",
+          "pod-00-002"
+        ]
+      },
+      {
+        "name": "pod_ip",
+        "distinct_values": 10000,
+        "class": "redundant",
+        "redundant_with": "pod",
+        "examples": [
+          "10.0.0.1",
+          "10.0.0.2",
+          "10.0.0.3"
+        ]
+      },
+      {
+        "name": "namespace",
+        "distinct_values": 50,
+        "examples": [
+          "ns-00",
+          "ns-01",
+          "ns-02"
+        ]
+      },
+      {
+        "name": "container",
+        "distinct_values": 3,
+        "examples": [
+          "app",
+          "init",
+          "sidecar"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,90 @@
+{
+  "series_before": 4904400,
+  "series_after": 168865,
+  "reduction": 0.9655686730283011,
+  "instants": [
+    "2026-10-15T03:27:00+05:30",
+    "2026-10-15T03:28:00+05:30",
+    "2026-10-15T03:29:00+05:30",
+    "2026-10-15T03:30:00+05:30",
+    "2026-10-15T03:37:00+05:30",
+    "2026-10-15T03:38:00+05:30",
+    "2026-10-15T03:39:00+05:30",
+    "2026-10-15T03:40:00+05:30"
+  ],
+  "queries": [
+    {
+      "name": "Request rate by service",
+      "expr": "sum by (service) (rate(http_requests_total[5m]))",
+      "instants_compared": 8,
+      "result_series": 20,
+      "equal": true,
+      "max_relative_difference": 5.384589124753604e-15
+    },
+    {
+      "name": "Error ratio by service",
+      "expr": "sum by (service) (rate(http_requests_total{status=~\"5..\"}[5m])) / sum by (service) (rate(http_requests_total[5m]))",
+      "instants_compared": 8,
+      "result_series": 20,
+      "equal": true,
+      "max_relative_difference": 8.968253715856848e-15
+    },
+    {
+      "name": "Requests by route and status",
+      "expr": "sum by (route, status) (rate(http_requests_total[5m]))",
+      "instants_compared": 8,
+      "result_series": 50,
+      "equal": true,
+      "max_relative_difference": 1.0366162001988533e-14
+    },
+    {
+      "name": "p99 latency by service",
+      "expr": "histogram_quantile(0.99, sum by (le, service) (rate(http_request_duration_seconds_bucket[5m])))",
+      "instants_compared": 8,
+      "result_series": 20,
+      "equal": true,
+      "max_relative_difference": 0
+    },
+    {
+      "name": "Session events by tenant",
+      "expr": "sum by (tenant, event) (rate(session_events_total[5m]))",
+      "instants_compared": 8,
+      "result_series": 25,
+      "equal": true,
+      "max_relative_difference": 7.071598595464144e-14
+    },
+    {
+      "name": "Last successful batch run per job",
+      "expr": "max by (job) (batch_job_last_success_timestamp_seconds)",
+      "instants_compared": 8,
+      "result_series": 200,
+      "equal": true,
+      "max_relative_difference": 0
+    },
+    {
+      "name": "CPU by pod",
+      "expr": "sum by (namespace, pod) (rate(container_cpu_usage_seconds_total[5m]))",
+      "instants_compared": 8,
+      "result_series": 10000,
+      "equal": true,
+      "max_relative_difference": 0
+    },
+    {
+      "name": "Busy CPU by node",
+      "expr": "sum by (instance) (rate(node_cpu_seconds_total{mode!=\"idle\"}[5m]))",
+      "instants_compared": 8,
+      "result_series": 500,
+      "equal": true,
+      "max_relative_difference": 0
+    },
+    {
+      "name": "Consumer lag by topic and group",
+      "expr": "max by (topic, group) (kafka_consumergroup_lag)",
+      "instants_compared": 8,
+      "result_series": 1600,
+      "equal": true,
+      "max_relative_difference": 0
+    }
+  ],
+  "all_queries_equal": true
+}

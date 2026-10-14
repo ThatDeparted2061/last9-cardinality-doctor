@@ -1,0 +1,10 @@
+4.9M series across 7 metrics (423.7B samples/mo, ~550.9 GB/mo, ~$42.4k/mo), analysed in 17.495s
+
+METRIC                                    SERIES  GROWTH  COST                                         FINDINGS
+http_requests_total                       2.0M    +82%    172.8B samples/mo, ~224.6 GB/mo, ~$17.3k/mo  user_id: 900.0k values, user_id (e.g. u-100946) -> 4.0k series without it
+http_request_duration_seconds_bucket      1.4M    +82%    124.4B samples/mo, ~161.7 GB/mo, ~$12.4k/mo  route_path: 116.0k values, url_with_ids (e.g. /api/orders/10000/items/32) -> 240 series without it
+session_events_total                      1.0M    +82%    86.4B samples/mo, ~112.3 GB/mo, ~$8.6k/mo    session_id: 1.0M values, uuid (e.g. 000145ac-bfb6-42d1-9284-47c70ce65e35) -> 25 series without it
+batch_job_last_success_timestamp_seconds  300.0k  +82%    25.9B samples/mo, ~33.7 GB/mo, ~$2.6k/mo     run_id: 1.5k values, timestamp (e.g. 1791924720) -> 200 series without it
+kafka_consumergroup_lag                   102.4k  +0%     8.8B samples/mo, ~11.5 GB/mo, ~$885/mo       ok
+node_cpu_seconds_total                    32.0k   +0%     2.8B samples/mo, ~3.6 GB/mo, ~$276/mo        ok
+container_cpu_usage_seconds_total         30.0k   +0%     2.6B samples/mo, ~3.4 GB/mo, ~$259/mo        pod_ip is 1:1 with pod (safe to drop)
