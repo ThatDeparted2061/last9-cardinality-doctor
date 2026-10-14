@@ -81,7 +81,8 @@ func mcp(args []string) error {
 			case req.Params.Name == "why_did_series_spike":
 				spike(&buf, ms)
 			default:
-				fmt.Fprintf(&buf, "unknown tool %q", req.Params.Name)
+				err = fmt.Errorf("unknown tool %q", req.Params.Name)
+				buf.WriteString(err.Error())
 			}
 			result = map[string]any{"content": []map[string]any{{"type": "text", "text": buf.String()}}, "isError": err != nil}
 		default:
