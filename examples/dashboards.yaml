@@ -1,0 +1,21 @@
+# The queries behind the dashboards people actually look at. cardinality-doctor
+# never removes a label one of these uses, and its dry run checks every one
+# returns the same result after the reduction.
+- name: Request rate by service
+  expr: sum by (service) (rate(http_requests_total[5m]))
+- name: Error ratio by service
+  expr: sum by (service) (rate(http_requests_total{status=~"5.."}[5m])) / sum by (service) (rate(http_requests_total[5m]))
+- name: Requests by route and status
+  expr: sum by (route, status) (rate(http_requests_total[5m]))
+- name: p99 latency by service
+  expr: histogram_quantile(0.99, sum by (le, service) (rate(http_request_duration_seconds_bucket[5m])))
+- name: Session events by tenant
+  expr: sum by (tenant, event) (rate(session_events_total[5m]))
+- name: Last successful batch run per job
+  expr: max by (job) (batch_job_last_success_timestamp_seconds)
+- name: CPU by pod
+  expr: sum by (namespace, pod) (rate(container_cpu_usage_seconds_total[5m]))
+- name: Busy CPU by node
+  expr: sum by (instance) (rate(node_cpu_seconds_total{mode!="idle"}[5m]))
+- name: Consumer lag by topic and group
+  expr: max by (topic, group) (kafka_consumergroup_lag)
